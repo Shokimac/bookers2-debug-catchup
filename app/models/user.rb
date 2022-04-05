@@ -16,6 +16,10 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }, uniqueness: true
+  
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+  end
 
   def followed?(other_user)
     self.followeds.include?(other_user)
@@ -28,8 +32,18 @@ class User < ApplicationRecord
   def unfollow(other_user)
     self.followed_relationships.find_by(followed_id: other_user.id).destroy
   end
-  
-  def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+
+  def self.search(search,word)
+    if search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "perfect_match"
+      @user = User.where("#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
   end
 end
