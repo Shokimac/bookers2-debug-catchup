@@ -8,7 +8,9 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all
+    from  = Time.current.at_beginning_of_day
+    to    = (from + 6.day).at_end_of_day
+    @books = Book.left_joins(:favorites).where(created_at: from...to).group('books.id').order('count(favorites.book_id) DESC')
   end
 
   def create

@@ -22,4 +22,11 @@ class Book < ApplicationRecord
 			@book = Book.all
 		end
 	end
+
+	# def self.order_by_favorites_count()
+	# 	select("*, COUNT(*) AS favorites_count")
+  #   .left_joins(:favorites)
+  #   .group("book.id")
+  #   .order(:likes_count => order)
+	# end
 end
