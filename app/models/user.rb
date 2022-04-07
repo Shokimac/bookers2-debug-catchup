@@ -65,6 +65,9 @@ class User < ApplicationRecord
     when 'last_week'
       to = (Time.current - 6.day).at_end_of_day
       from = (to - 6.day).at_beginning_of_day
+    
+    else
+      from = Time.current.at_beginning_of_day
     end
     Book.where(user_id: self.id, created_at: from...to).count
 	end
