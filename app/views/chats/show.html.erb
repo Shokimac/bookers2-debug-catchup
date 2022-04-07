@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2><%= @user.name %>さんとのチャットルーム</h2>
+      <%= form_with @chat, local: false do |f| %>
+      <%= f.text_field :message %>
+      <%= f.hidden_field :room_id %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <table class="table chat-table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th><%= current_user.name %></th>
+            <th><%= @user.name %></th>
+          </tr>
+        </thead>
+        <% @chats.each do |chat| %>
+        <tbody>
+          <% if chat.user_id == current_user.id %>
+          <tr>
+            <th>
+              <p class="text-left"><%= chat.message %></p>
+            </th>
+          </tr>
+          <% else %>
+          <tr>
+            <th>
+              <p class="text-right"><%= chat.message %></p>
+            </th>
+          </tr>
+          <% end %>
+
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

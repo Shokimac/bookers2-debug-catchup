@@ -28,6 +28,7 @@
   <%= form_with(model: current_user.followed_relationships.find_by(followed_id: user.id),method: :delete) do |f| %>
   <%= f.hidden_field :followed_id %>
   <%= f.submit "フォロー解除", class: "btn-sm btn-danger" %>
+  <%= link_to 'chatを始める', chat_path(user) %>
   <% end %>
   <% else %>
   <%= form_with(model: current_user.followed_relationships.build) do |f| %>
