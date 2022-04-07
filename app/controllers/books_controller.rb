@@ -4,12 +4,16 @@ class BooksController < ApplicationController
     @new_book = Book.new
     @book = Book.find(params[:id])
     @new_comment = BookComment.new
+
+    
+    binding.pry
+    
   end
 
   def index
     @book = Book.new
-    from  = Time.current.at_beginning_of_day
-    to    = (from + 6.day).at_end_of_day
+    to  = Time.current.at_end_of_day
+    from    = (to - 6.day).at_beginning_of_day
     @books = Book.left_joins(:favorites).where(created_at: from...to).group('books.id').order('count(favorites.book_id) DESC')
   end
 
