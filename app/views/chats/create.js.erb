@@ -1,2 +1,10 @@
+<% if @chat.errors.any? %>
+<% @chat.errors.full_messages.each do |message| %>
+$('.error_message').empty();
+$('.error_message').append("<p><%= message %></p>");
+<% end %>
+<% else %>
 $('.chat-table').append("<p style='text-left'><%= @chat.message %></p>");
 $('input[type=text]').val("");
+$('.error_message').empty();
+<% end %>
