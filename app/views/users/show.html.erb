@@ -9,6 +9,42 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th>今日の投稿数</th>
+            <th>昨日の投稿数</th>
+            <th>前日比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @user.post_book_cnt('today') %></td>
+            <td><%= @user.post_book_cnt('yesterday') %></td>
+            <td>
+              <%= (@user.post_book_cnt('today') / (@user.post_book_cnt('yesterday').zero? ? 1 :@user.post_book_cnt('yesterday'))) * 100 %>%
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th>今週の投稿数</th>
+            <th>先週の投稿数</th>
+            <th>前週比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @user.post_book_cnt('this_week') %></td>
+            <td><%= @user.post_book_cnt('last_week') %></td>
+            <td>
+              <%= (@user.post_book_cnt('this_week') / (@user.post_book_cnt('last_week').zero? ? 1 :@user.post_book_cnt('last_week'))) * 100 %>%
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

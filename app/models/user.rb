@@ -48,4 +48,24 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
+
+  def post_book_cnt(type)
+    to = Time.current.at_end_of_day
+    case type
+    when 'today'
+      from  = Time.current.at_beginning_of_day
+
+    when 'yesterday'
+      to    = (Time.current - 1.day).at_end_of_day
+      from  = (Time.current - 1.day).at_beginning_of_day
+
+    when 'this_week'
+      from  = (Time.current - 6.day).at_beginning_of_day
+
+    when 'last_week'
+      to = (Time.current - 6.day).at_end_of_day
+      from = (to - 6.day).at_beginning_of_day
+    end
+    Book.where(user_id: self.id, created_at: from...to).count
+	end
 end
