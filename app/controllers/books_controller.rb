@@ -1,13 +1,12 @@
 class BooksController < ApplicationController
 
   def show
+    view_count = ViewCount.find_or_create_by!(book_id: params[:id])
+    view_count.increment!(:count)
+
     @new_book = Book.new
     @book = Book.find(params[:id])
     @new_comment = BookComment.new
-
-    
-    binding.pry
-    
   end
 
   def index
