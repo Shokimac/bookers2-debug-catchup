@@ -31,14 +31,3 @@
 /config/master.key
 
 .DS_Store
-
-public/packs/manifest.json
-public/packs/js/application-0388c47cf828544528df.js
-public/packs/js/application-0388c47cf828544528df.js.map
-public/packs/js/application-8e794040c45461c4f1fa.js.map
-public/packs/js/application-8e794040c45461c4f1fa.js
-public/packs/js/application-bd3af55752f580f7721c.js
-public/packs-test/manifest.json
-public/packs/js/application-bd3af55752f580f7721c.js.map
-public/packs-test/js/application-ab2a277c31528ae97b89.js.map
-public/packs-test/js/application-ab2a277c31528ae97b89.js
