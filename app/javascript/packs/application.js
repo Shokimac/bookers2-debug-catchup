@@ -15,10 +15,11 @@ import "../stylesheets/application"
 import Chart from "chart.js/auto"
 import 'packs/books/index.scss'
 
+window.$ = window.jQuery = require('jquery');
+require('packs/raty')
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-require("jquery")
 
 global.Chart = Chart;

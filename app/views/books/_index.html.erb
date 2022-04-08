@@ -7,6 +7,7 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,7 +25,24 @@
       </td>
       <td><%= "コメント数：#{book.book_comments.count}" %></td>
       <td>閲覧数：<%= book.view_count.nil? ? 0 : book.view_count.count %></td>
+      <td>
+        <div id="book<%= book.id %>-rate"></div>
+      </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+
+<script>
+  "<% books.each do |book_js | %>"
+  $("#book<%= book_js.id %>-rate").raty({
+    size: 38,
+    starOff: "<%= asset_path('star-off.png') %>",
+    starOn: "<%= asset_path('star-on.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    half: true,
+    readOnly: true,
+    score: "<%= book_js.rate %>",
+  });
+  "<%end%>"
+</script>

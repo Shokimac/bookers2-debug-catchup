@@ -28,6 +28,10 @@ class BooksController < ApplicationController
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all
+      @post_cnt = []
+      for num in 0..6 do
+        @post_cnt[num] = Book.post_count(num)
+      end
       render 'index'
     end
   end
@@ -61,6 +65,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :rate)
   end
 end
