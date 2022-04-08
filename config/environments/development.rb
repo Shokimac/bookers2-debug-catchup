@@ -77,4 +77,16 @@ Rails.application.configure do
   config.hosts << "e8d95f52af764f85a5362e3ccd8bb528.vfs.cloud9.us-east-1.amazonaws.com"
 
   config.web_console.whitelisted_ips = '133.175.26.244'
+
+  config.action_mailer.default_url_options = { protocol: 'https', host: "e8d95f52af764f85a5362e3ccd8bb528.vfs.cloud9.us-east-1.amazonaws.com" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    port: 587,
+    user_name: Rails.application.credentials.gmail[:user_name],
+    password: Rails.application.credentials.gmail[:password],
+    authentication: :login
+  }
+
 end

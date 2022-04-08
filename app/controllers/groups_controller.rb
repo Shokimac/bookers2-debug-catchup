@@ -48,13 +48,9 @@ class GroupsController < ApplicationController
 
   def leave
     group_user = GroupUser.where(group_id: params[:group_id]).find_by(user_id: current_user.id)
-    
-    binding.pry
-    
     group_user.destroy
     redirect_to groups_path
   end
-
 
   private
   def group_params

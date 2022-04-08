@@ -16,6 +16,7 @@
             <th>紹介文</th>
             <th>メンバー</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tr>
@@ -39,6 +40,11 @@
             <% end %>
             <% else %>
             <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success edit_group_#{@group.id}" %>
+            <% end %>
+          </td>
+          <td>
+            <% if @group.owner_id == current_user.id %>
+            <%= link_to 'Notice an Event', new_group_notice_path(@group), class: 'btn btn-primary' %>
             <% end %>
           </td>
         </tr>
