@@ -9,6 +9,15 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Group detail</h2>
       <table class='table'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>メンバー</th>
+            <th></th>
+          </tr>
+        </thead>
         <tr>
           <td><%= link_to(@group) do %>
             <%= image_tag @group.get_group_image, size:"100x100" %><br>
@@ -17,7 +26,18 @@
           <td><%= link_to @group.name, @group %></td>
           <td><%= @group.introduction %></td>
           <td>
-            <% if @group.owner_id == current_user.id %>
+            <% @group.users.each do |member| %>
+            <p><%= member.name %></p>
+            <% end %>
+          </td>
+          <td>
+            <% if @group.owner_id != current_user.id %>
+            <% if current_user.joined?(@group) %>
+            <%= link_to 'Leave this group', group_leave_path(@group), method: :delete, class:'btn btn-danger' %>
+            <% else %>
+            <%= link_to 'Join this group', group_join_path(@group), class: 'btn btn-success' %>
+            <% end %>
+            <% else %>
             <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success edit_group_#{@group.id}" %>
             <% end %>
           </td>

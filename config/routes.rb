@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
   end
   resources :chats, only: [:show, :create]
-  resources :groups
+  resources :groups do
+    get 'join' => 'groups#join'
+    delete 'leave' => 'groups#leave'
+  end
   get 'search' => 'searches#search'
   post 'book_count' => 'books#count', as: 'book_count'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

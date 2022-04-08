@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
@@ -76,4 +77,8 @@ class User < ApplicationRecord
   def post_count_day(date)
 		Book.where(user_id: self.id ,created_at: date.in_time_zone.all_day).count
 	end
+
+  def joined?(group)
+    self.groups.include?(group)
+  end
 end

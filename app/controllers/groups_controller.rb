@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
+      GroupUser.new(user_id: current_user.id, group_id: @group.id).save
       redirect_to groups_path
     else
       render 'new'
@@ -38,6 +39,22 @@ class GroupsController < ApplicationController
       render 'edit'
     end
   end
+  
+  def join
+    group_user = GroupUser.new(user_id: current_user.id, group_id: params[:group_id])
+    group_user.save
+    redirect_to groups_path
+  end
+
+  def leave
+    group_user = GroupUser.where(group_id: params[:group_id]).find_by(user_id: current_user.id)
+    
+    binding.pry
+    
+    group_user.destroy
+    redirect_to groups_path
+  end
+
 
   private
   def group_params
