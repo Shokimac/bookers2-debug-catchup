@@ -14,6 +14,14 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'index', books: @books%>
+
+      <% @post_cnt.each_with_index do |count, index| %>
+      <%= hidden_field_tag "#{index}_ago", count %>
+      <% end %>
+
+      <h3>7日間の投稿数の比較</h3>
+      <canvas id="myLineChart" width="800" height="400"></canvas>
+      <%= javascript_pack_tag 'books/index' %>
     </div>
   </div>
 </div>

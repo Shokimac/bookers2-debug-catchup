@@ -25,10 +25,8 @@ class Book < ApplicationRecord
 		end
 	end
 
-	# def self.order_by_favorites_count()
-	# 	select("*, COUNT(*) AS favorites_count")
-  #   .left_joins(:favorites)
-  #   .group("book.id")
-  #   .order(:likes_count => order)
-	# end
+	def self.post_count(num)
+		target = (Time.current - num.day)
+		Book.where(created_at: target.at_beginning_of_day...target.at_end_of_day).count
+	end
 end
