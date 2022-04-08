@@ -25,7 +25,13 @@ class BooksController < ApplicationController
       to  = Time.current.at_end_of_day
       from    = (to - 6.day).at_beginning_of_day
     end
-    @books = Book.left_joins(:favorites).where(created_at: from...to).group('books.id').order(sort + ' DESC')      
+
+    if params[:category_group].nil?
+      @books = Book.left_joins(:favorites).where(created_at: from...to).group('books.id').order(sort + ' DESC')      
+    else
+      category = params[:category_group]
+      @books = Book.left_joins(:favorites).where(category: category, created_at: from...to).group('books.id').order(sort + ' DESC')   
+    end
 
     @post_cnt = []
     for num in 0..6 do
@@ -77,6 +83,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :rate)
+    params.require(:book).permit(:title, :body, :rate, :category)
   end
 end

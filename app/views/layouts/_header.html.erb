@@ -29,6 +29,12 @@
             <i class="fas fa-sign-out-alt"></i> logout
             <% end %>
           </li>
+          <li>
+            <%= form_tag(books_path, method: :get) do %>
+            <%= text_field_tag (:category_group) %>
+            <%= submit_tag "検索" %>
+            <% end %>
+          </li>
           <% else %>
           <li>
             <%= link_to root_path,class: 'nav-link text-light' do %>

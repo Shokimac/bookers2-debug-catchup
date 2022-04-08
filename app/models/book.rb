@@ -8,7 +8,7 @@ class Book < ApplicationRecord
   validates :body,presence:true,length:{maximum:200}
 	validates :rate,presence:true,numericality: {
 		less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 1
+    greater_than_or_equal_to: 0.5
 	}
 
   def favorited_by?(user)
