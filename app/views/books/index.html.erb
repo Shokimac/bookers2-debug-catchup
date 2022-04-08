@@ -13,6 +13,9 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
+      <%= link_to '新しい順', books_path(sort: 'new') %>
+      |
+      <%= link_to '評価順', books_path(sort: 'rate') %>
       <%= render 'index', books: @books%>
 
       <% @post_cnt.each_with_index do |count, index| %>

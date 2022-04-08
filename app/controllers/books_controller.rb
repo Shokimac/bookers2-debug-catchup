@@ -11,9 +11,21 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    to  = Time.current.at_end_of_day
-    from    = (to - 6.day).at_beginning_of_day
-    @books = Book.left_joins(:favorites).where(created_at: from...to).group('books.id').order('count(favorites.book_id) DESC')
+    if params[:sort].nil?
+      sort = 'count(favorites.book_id)';
+    else
+      sort_type = params[:sort]
+      if sort_type == 'new'
+        # 新着順
+        sort = 'created_at'
+      else
+        # 評価順
+        sort = 'rate'
+      end
+      to  = Time.current.at_end_of_day
+      from    = (to - 6.day).at_beginning_of_day
+    end
+    @books = Book.left_joins(:favorites).where(created_at: from...to).group('books.id').order(sort + ' DESC')      
 
     @post_cnt = []
     for num in 0..6 do
