@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'chats/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
   root to: "homes#top"
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
   end
   resources :chats, only: [:show, :create]
+  resources :groups
   get 'search' => 'searches#search'
   post 'book_count' => 'books#count', as: 'book_count'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

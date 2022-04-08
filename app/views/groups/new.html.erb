@@ -1,0 +1,14 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Create Group</h1>
+      <% if @group.errors.any? %>
+      <% @group.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+      <% end %>
+      <%= render 'form', group: @group %>
+      <%= link_to 'Show', @group, class: "group_#{@group.id}" %> |
+      <%= link_to 'Back', groups_path, class: "back" %>
+    </div>
+  </div>
