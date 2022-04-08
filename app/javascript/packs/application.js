@@ -10,9 +10,10 @@ import "channels"
 import "jquery"
 import "popper.js"
 import "bootstrap"
-import '@fortawesome/fontawesome-free/js/all';
+import '@fortawesome/fontawesome-free/js/all'
 import "../stylesheets/application"
-import Chart from "chart.js/auto";
+import Chart from "chart.js/auto"
+import 'packs/books/index.scss'
 
 Rails.start()
 Turbolinks.start()

@@ -71,4 +71,8 @@ class User < ApplicationRecord
     end
     Book.where(user_id: self.id, created_at: from...to).count
 	end
+
+  def post_count_day(date)
+		Book.where(user_id: self.id ,created_at: date.in_time_zone.all_day).count
+	end
 end

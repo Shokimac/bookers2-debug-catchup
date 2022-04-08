@@ -45,6 +45,25 @@
           </tr>
         </tbody>
       </table>
+
+      <%= form_with url: book_count_path, local: false do |form| %>
+      <%= form.date_field 'date' %>
+      <%= form.submit '検索', class:'btn btn-primary' %>
+      <% end %>
+      <table class='table count_res_table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th>投稿数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <p id="count_res"></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

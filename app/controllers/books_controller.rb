@@ -54,6 +54,10 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def count
+    @count = current_user.post_count_day(params[:date])
+  end
+
   private
 
   def book_params
