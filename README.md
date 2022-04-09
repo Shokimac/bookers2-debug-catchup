@@ -9,8 +9,6 @@
 - Ruby 2.6.3
 - Ruby on Rails 6.1.4
 - SQLite 3.7.17
-- Nginx
 - Puma
-- Rspec
 - devise
 - Ajax
