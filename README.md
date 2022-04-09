@@ -1,24 +1,16 @@
-# README
+# Bookers
+自身が読んだ本を共有することのできるWebアプリとなっております。
+コメントを残したり、いいね機能、ユーザーのフォロー機能なども備えております。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 背景
+こちらカリキュラムの過程で作成したアプリとなっております
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 使用技術
+- Ruby 2.6.3
+- Ruby on Rails 6.1.4
+- SQLite 3.7.17
+- Nginx
+- Puma
+- Rspec
+- devise
+- Ajax
