@@ -11,7 +11,7 @@
   <%= f.label :Category %>
   <%= f.text_field :category, class: 'form-control book_category' %>
 </div>
-<div class="form-group" id="rate">
+<div class="form-group" id="form_rate">
   <%= f.label :rate, 'Rate' %>
 </div>
 <div class="form-group">
@@ -20,7 +20,7 @@
 <% end %>
 
 <script>
-  $('#rate').raty({
+  $('#form_rate').raty({
     size: 36,
     starOff: "<%= asset_path('star-off.png') %>",
     starOn: "<%= asset_path('star-on.png') %>",
