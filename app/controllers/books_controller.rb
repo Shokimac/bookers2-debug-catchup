@@ -77,7 +77,7 @@ class BooksController < ApplicationController
   end
 
   def count
-    @count = current_user.post_count_day(params[:date])
+    @count = current_user.post_count_day(params[:user_id], params[:date])
   end
 
   private
